@@ -1,5 +1,13 @@
 const cols = document.querySelectorAll('.col')
 
+//меняем цвета нажатие на пробел
+document.addEventListener('keydown', (event) => {
+    if (event.code.toLowerCase() === 'space') {
+        setRandomColors()
+    }
+})
+
+
 function generateRandomColor() {
     //RGB палирта состоит из этих символов
     const hexCodes = '0123456789ABCDEF'
