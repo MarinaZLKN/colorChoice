@@ -2,6 +2,9 @@ const cols = document.querySelectorAll('.col')
 
 //меняем цвета нажатие на пробел
 document.addEventListener('keydown', (event) => {
+    //устраняем баг: принажатии на пробел иконки сбрасываются; отменяем дефолтное поведение
+    event.preventDefault()
+
     if (event.code.toLowerCase() === 'space') {
         setRandomColors()
     }
