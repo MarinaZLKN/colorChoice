@@ -7,7 +7,18 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
+//добавляем кликабельность на замки
+document.addEventListener('click', event => {
+    const type = event.target.dataset.type
 
+    if ( type === 'lock') {
+        const node =
+            event.target.tagName.toLowerCase() === 'i' ? event.target : event.target.children[0]
+        // меняем иконки при нажатии
+        node.classList.toggle('fa-lock-open')
+        node.classList.toggle('fa-lock')
+    }
+})
 function generateRandomColor() {
     //RGB палирта состоит из этих символов
     const hexCodes = '0123456789ABCDEF'
