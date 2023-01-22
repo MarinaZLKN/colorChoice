@@ -20,8 +20,12 @@ document.addEventListener('click', event => {
         // меняем иконки при нажатии
         node.classList.toggle('fa-lock-open')
         node.classList.toggle('fa-lock')
-    }
+    } else if (type === 'copia') {
+        copyToClickboard(event.target.textContent)
+    } //функция копирования номера цвета при нажатии на него
 })
+
+
 function generateRandomColor() {
     //RGB палирта состоит из этих символов
     const hexCodes = '0123456789ABCDEF'
@@ -33,11 +37,21 @@ function generateRandomColor() {
     return '#' + color
 }
 
+//функция копирования номера цвета при нажатии на него
+function copyToClickboard(text){
+    return navigator.clipboard.writeText(text)
+}
+
 function setRandomColors() {
-    cols.forEach(col => {
+    cols.forEach((col) => {
+        const isLocked = col.querySelector('i').classList.contains('fa-lock')
         const text = col.querySelector('h2')
         const button = col.querySelector('button')
         const color = chroma.random() // вместо generateRandomColor()
+        //закрепляем цвет, чтобы не менялся
+        if (isLocked) {
+            return
+        }
         text.textContent = color
         col.style.background = color
 
